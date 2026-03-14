@@ -1,0 +1,6 @@
+{
+  "appId": "com.olica.app",
+  "appName": "Olica",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}

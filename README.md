@@ -4,26 +4,44 @@ Este proyecto es una aplicación de gestión para kioscos (ventas, compras, stoc
 
 ## Instalación y uso (para compradores)
 
+### Versión de Escritorio
 1. Descarga el instalador desde el release de GitHub (busca "Olica Setup.exe" o similar).
 2. Ejecuta el instalador y sigue las instrucciones.
 3. Abre la aplicación desde el menú de inicio o el escritorio.
 
-La aplicación incluye todo lo necesario (frontend y backend) y funciona sin conexión a internet ni configuraciones adicionales.
+### Versión Móvil
+1. Descarga la APK desde el release de GitHub (busca "Olica.apk").
+2. Instala la APK en tu dispositivo Android (permite instalaciones de fuentes desconocidas).
+3. Abre la app.
+
+La aplicación incluye todo lo necesario y funciona sin conexión a internet ni configuraciones adicionales (datos se sincronizan con el servidor).
+
+**Nota para móvil:** La versión móvil requiere que el backend esté desplegado en un servidor (como Render) para sincronizar datos entre dispositivos.
 
 ## Desarrollo
 
 ### Requisitos
 - Node.js (descárgalo de [nodejs.org](https://nodejs.org))
+- Para móvil: Android Studio (para Android) o Xcode (para iOS)
 
 ### Uso local
 1. Instala dependencias: `npm install`
 2. Ejecuta: `npm start`
 
-### Construir instalador
+### Construir instalador de escritorio
 1. Instala dependencias de desarrollo: `npm install --only=dev`
 2. Construye: `npm run dist`
 
 Esto genera instaladores en la carpeta `dist/`.
+
+### Construir app móvil
+1. Inicializa Capacitor: `npm run cap:init`
+2. Añade plataforma Android: `npm run cap:add:android`
+3. Construye y sincroniza: `npm run cap:build && npm run cap:sync`
+4. Abre en Android Studio: `npx cap open android`
+5. Construye la APK desde Android Studio.
+
+Para iOS: `npm run cap:add:ios` y abre en Xcode.
 
 ## Publicación (GitHub Pages)
 Este repositorio está configurado para publicarse automáticamente en GitHub Pages.
