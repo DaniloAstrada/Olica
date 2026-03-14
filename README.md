@@ -2,8 +2,25 @@
 
 Este proyecto es una aplicación de gestión para kioscos (ventas, compras, stock, etc.).
 
-## Uso local
-1. Abre `Olica.html` en tu navegador.
+## Instalación y uso (para compradores)
+
+1. Descarga el instalador desde el release de GitHub (busca "Olica Setup.exe" o similar).
+2. Ejecuta el instalador y sigue las instrucciones.
+3. Abre la aplicación desde el menú de inicio o el escritorio.
+
+La aplicación incluye todo lo necesario (frontend y backend) y funciona sin conexión a internet ni configuraciones adicionales.
+
+## Desarrollo
+
+### Uso local
+1. Instala dependencias: `npm install`
+2. Ejecuta: `npm start`
+
+### Construir instalador
+1. Instala dependencias de desarrollo: `npm install --only=dev`
+2. Construye: `npm run dist`
+
+Esto genera instaladores en la carpeta `dist/`.
 
 ## Publicación (GitHub Pages)
 Este repositorio está configurado para publicarse automáticamente en GitHub Pages.
@@ -14,7 +31,7 @@ https://DaniloAstrada.github.io/Olica/
 
 > **Nota:** es posible que tarde unos minutos en actualizarse después de subir cambios.
 
-## Despliegue del backend
+## Despliegue del backend (opcional para desarrollo)
 Para que la aplicación funcione en múltiples dispositivos con datos compartidos:
 
 1. Despliega el backend en un servicio como Render (gratuito):
