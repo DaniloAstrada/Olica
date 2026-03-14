@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Olica - Página de Inicio</title>
+</head>
+<body>
+    <header class="header-superior">
+        <div class="header-content">
+            <div class="logo-container">
+                <h1 class="logo">Olica</h1>
+                <img src="./imagenes/fondo olica.jpeg" alt="Logo Olica" class="logo-imagen">
+            </div>
+            <nav class="menu-superior">
+                <ul>
+                    <li>
+                        <a href="./Olica.html" class="boton-menu active"><i class="bi bi-house"></i><span>Inicio</span></a>
+                    </li>
+                    <li>
+                        <a href="./registro.html" class="boton-menu"><i class="bi bi-three-dots-vertical"></i><span>Registro</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="wrapper">
+        <main>
+            <!-- Sección de Bienvenida/Inicio -->
+            <section class="contenido seccion-inicio">
+                <div class="bienvenida">
+                    <h1>Bienvenido a Olica</h1>
+                    <p>Sistema de Gestión para tu Kiosco</p>
+                    <p class="subtitulo">Selecciona una opción a continuación para comenzar</p>
+                </div>
+
+                <!-- TARJETAS DE OPCIONES -->
+                <div class="grid-opciones">
+                    <!-- Tarjeta Ventas -->
+                    <a href="./ventas.html" class="tarjeta-opcion tarjeta-ventas">
+                        <div class="icono-tarjeta">
+                            <i class="bi bi-cash-coin"></i>
+                        </div>
+                        <h3>Registrar Venta</h3>
+                        <p>Carga una nueva venta con descripción, cantidad y método de pago</p>
+                        <span class="boton-tarjeta">Ir a Ventas →</span>
+                    </a>
+
+                    <!-- Tarjeta Gastos -->
+                    <div class="tarjeta-opcion tarjeta-gastos" onclick="window.location.href='./registro de datos.html'">
+                        <div class="icono-tarjeta">
+                            <i class="bi bi-cart-plus"></i>
+                        </div>
+                        <h3>Registrar Compra</h3>
+                        <p>Registra compras de productos al proveedor (Coca Cola, Arroz, etc.)</p>
+                        <span class="boton-tarjeta">Ir a Compras →</span>
+                    </div>
+
+                    <!-- Tarjeta Stock -->
+                    <a href="./stock.html" class="tarjeta-opcion tarjeta-stock">
+                        <div class="icono-tarjeta">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+                        <h3>Stock</h3>
+                        <p>Consulta y actualiza el estado de tu stock</p>
+                        <span class="boton-tarjeta">Ir a Stock →</span>
+                    </a>
+
+                    <!-- Tarjeta Ganancias y Pérdidas -->
+                    <a href="./ganancias y perdidas.html" class="tarjeta-opcion tarjeta-ganancias">
+                        <div class="icono-tarjeta">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h3>Ganancias y Pérdidas</h3>
+                        <p>Visualiza ganancias, pérdidas y totales</p>
+                        <span class="boton-tarjeta">Ir a Reporte →</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Sección Ventas (ver datos) -->
+            <section id="ventas" class="contenido">
+                <div class="encabezado-seccion">
+                    <h2><i class="bi bi-cash"></i> Ventas Registradas</h2>
+                    <a href="./ventas.html" class="boton-secundario">
+                        <i class="bi bi-plus-circle"></i> Nueva Venta
+                    </a>
+                </div>
+                <p>Últimas ventas registradas en el sistema.</p>
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                                <th>Método de Pago</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-ventas">
+                            <tr><td colspan="6" style="text-align: center; color: #999;">No hay ventas registradas</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección Gastos -->
+            <section id="gastos" class="contenido">
+                <h2><i class="bi bi-credit-card"></i> Gastos</h2>
+                <p>Registra y visualiza todos tus gastos.</p>
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Concepto</th>
+                                <th>Cantidad</th>
+                                <th>Monto</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-gastos">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección Stock -->
+            <section id="stock" class="contenido">
+                <h2><i class="bi bi-clipboard-data"></i> Stock</h2>
+                <p>Visualiza el estado actual de tu inventario.</p>
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-stock">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección Ganancias y Pérdidas -->
+            <section id="ganancias" class="contenido">
+                <h2><i class="bi bi-briefcase-fill"></i> Ganancias y Pérdidas</h2>
+                <p>Análisis financiero de tu negocio.</p>
+                <div id="resumen-financiero" class="resumen-financiero">
+                    <!-- Datos dinámicos -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Mostrar sección específica
+        function mostrarSeccion(seccion) {
+            // Ocultar todas las secciones
+            const secciones = document.querySelectorAll('main > section');
+            secciones.forEach(s => s.classList.remove('seccion-activa'));
+
+            // Mostrar la sección seleccionada
+            const seccionActiva = document.getElementById(seccion);
+            if (seccionActiva) {
+                seccionActiva.classList.add('seccion-activa');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Cargar ventas desde localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const ventasOlica = localStorage.getItem('ventasOlica');
+            if (ventasOlica) {
+                const ventas = JSON.parse(ventasOlica);
+                actualizarTablaVentas(ventas);
+            }
+        });
+
+        function actualizarTablaVentas(ventas) {
+            const tbody = document.getElementById('tbody-ventas');
+            if (ventas.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #999;">No hay ventas registradas</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = ventas.slice(-5).reverse().map(v => `
+                <tr>
+                    <td><strong>${v.producto}</strong></td>
+                    <td>${v.cantidad}</td>
+                    <td>$${v.precio.toFixed(2)}</td>
+                    <td><strong>$${v.total.toFixed(2)}</strong></td>
+                    <td><span class="etiqueta-pago ${v.metodoPago === 'Efectivo' ? 'efectivo' : 'transferencia'}">${v.metodoPago}</span></td>
+                    <td>${v.fecha}</td>
+                </tr>
+            `).join('');
+        }
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

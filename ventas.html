@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Registro de Ventas - Olica</title>
+</head>
+<body>
+    <header class="header-superior">
+        <div class="header-content">
+            <div class="logo-container">
+                <h1 class="logo">Olica</h1>
+                <img src="./imagenes/fondo olica.jpeg" alt="Logo Olica" class="logo-imagen">
+            </div>
+            <nav class="menu-superior">
+                <ul>
+                    <li><a href="./Olica.html" class="boton-menu"><i class="bi bi-house"></i><span>Inicio</span></a></li>
+                    <li><a href="./ventas.html" class="boton-menu active"><i class="bi bi-cash"></i><span>Ventas</span></a></li>
+                    <li><a href="./registro de datos.html" class="boton-menu"><i class="bi bi-cart-plus"></i><span>Compras</span></a></li>
+                    <li><a href="./stock.html" class="boton-menu"><i class="bi bi-box-seam"></i><span>Stock</span></a></li>
+                    <li><a href="./ganancias y perdidas.html" class="boton-menu"><i class="bi bi-graph-up"></i><span>Ganancias</span></a></li>
+                    <li><a href="./registro.html" class="boton-menu"><i class="bi bi-three-dots-vertical"></i><span>Registro</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main>
+            <!-- FORMULARIO DE NUEVA VENTA -->
+            <section class="contenido formulario-venta">
+                <h2><i class="bi bi-plus-circle"></i> Registrar Nueva Venta</h2>
+                
+                <form id="formulario-venta" class="form-venta">
+                    <div class="fila-form">
+                        <div class="grupo-form">
+                            <label for="producto">Producto:</label>
+                            <select id="producto" name="producto" required>
+                                <option value="">-- Selecciona un producto --</option>
+                                <!-- opciones generadas dinámicamente -->
+                            </select>
+                        </div>
+
+                        <div class="grupo-form">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" name="cantidad" min="1" placeholder="0" required>
+                        </div>
+
+                        <div class="grupo-form">
+                            <label for="precio">Precio Unitario ($):</label>
+                            <input type="number" id="precio" name="precio" min="0" step="0.01" placeholder="0.00" required>
+                        </div>
+                    </div>
+
+                    <div class="fila-form">
+                        <div class="grupo-form">
+                            <label for="cliente">Cliente (Opcional):</label>
+                            <input type="text" id="cliente" name="cliente" placeholder="Nombre del cliente">
+                        </div>
+
+                        <div class="grupo-form">
+                            <label for="metodo-pago">Método de Pago:</label>
+                            <select id="metodo-pago" name="metodo-pago" required>
+                                <option value="">-- Selecciona un método --</option>
+                                <option value="Efectivo">💵 Efectivo</option>
+                                <option value="Transferencia">💳 Transferencia Bancaria</option>
+                            </select>
+                        </div>
+
+                        <div class="grupo-form">
+                            <label for="observaciones">Observaciones:</label>
+                            <input type="text" id="observaciones" name="observaciones" placeholder="Notas adicionales">
+                        </div>
+                    </div>
+
+                    <div class="fila-form acciones-form">
+                        <button type="submit" class="boton-guardar">
+                            <i class="bi bi-check-circle"></i> Guardar Venta
+                        </button>
+                        <button type="reset" class="boton-limpiar">
+                            <i class="bi bi-arrow-clockwise"></i> Limpiar
+                        </button>
+                    </div>
+                </form>
+
+                <!-- RESUMEN DE LA VENTA -->
+                <div id="resumen-venta" class="resumen-venta"></div>
+            </section>
+
+            <!-- TABLA DE VENTAS -->
+            <section class="contenido tabla-ventas">
+                <div class="encabezado-tabla">
+                    <h2><i class="bi bi-table"></i> Registro de Ventas</h2>
+                    <div class="botones-tabla">
+                        <button id="btnExportar" class="boton-exportar">
+                            <i class="bi bi-file-earmark-excel"></i> Exportar a Excel
+                        </button>
+                        <button id="btnLimpiarVentas" class="boton-limpiar-tabla">
+                            <i class="bi bi-trash"></i> Limpiar Tabla
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos tabla-ventas-registro">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unit.</th>
+                                <th>Total</th>
+                                <th>Cliente</th>
+                                <th>Método de Pago</th>
+                                <th>Observaciones</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-ventas-registro">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- TOTALES -->
+                <div class="totales-venta">
+                    <div class="total-item">
+                        <span>Total de Ventas:</span>
+                        <span id="total-ventas" class="valor-total">$0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Ventas en Efectivo:</span>
+                        <span id="total-efectivo" class="valor-efectivo">$0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Ventas por Transferencia:</span>
+                        <span id="total-transferencia" class="valor-transferencia">$0.00</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Librería para exportar Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
+    <script src="main.js"></script>
+    <script src="ventas.js"></script>
+</body>
+</html>

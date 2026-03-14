@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Registro - Olica</title>
+</head>
+<body>
+    <header class="header-superior">
+        <div class="header-content">
+            <div class="logo-container">
+                <h1 class="logo">Olica</h1>
+                <img src="./imagenes/fondo olica.jpeg" alt="Logo Olica" class="logo-imagen">
+            </div>
+            <nav class="menu-superior">
+                <ul>
+                    <li><a href="./Olica.html" class="boton-menu"><i class="bi bi-house"></i><span>Inicio</span></a></li>
+                    <li><a href="./ventas.html" class="boton-menu"><i class="bi bi-cash"></i><span>Ventas</span></a></li>
+                    <li><a href="./registro de datos.html" class="boton-menu"><i class="bi bi-cart-plus"></i><span>Compras</span></a></li>
+                    <li><a href="./stock.html" class="boton-menu"><i class="bi bi-box-seam"></i><span>Stock</span></a></li>
+                    <li><a href="./ganancias y perdidas.html" class="boton-menu"><i class="bi bi-graph-up"></i><span>Ganancias</span></a></li>
+                    <li><a href="./registro.html" class="boton-menu active"><i class="bi bi-three-dots-vertical"></i><span>Registro</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main>
+            <section class="contenido registro-usuarios">
+                <h2><i class="bi bi-pencil-square"></i> Registro e Inicio de Sesión</h2>
+                <div id="sesion-formularios">
+                    <div id="login-seccion">
+                        <h3>Iniciar Sesión</h3>
+                        <form id="form-login">
+                            <div class="grupo-form">
+                                <label for="login-nombre">Nombre de usuario:</label>
+                                <input type="text" id="login-nombre" required>
+                            </div>
+                            <div class="grupo-form">
+                                <label for="login-clave">Contraseña:</label>
+                                <input type="password" id="login-clave" required>
+                            </div>
+                            <div class="fila-form acciones-form">
+                                <button type="submit" class="boton-guardar">Entrar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="registro-seccion">
+                        <h3>Registrarse</h3>
+                        <form id="form-registro">
+                            <div class="grupo-form">
+                                <label for="reg-nombre">Nombre de usuario:</label>
+                                <input type="text" id="reg-nombre" required>
+                            </div>
+                            <div class="grupo-form">
+                                <label for="reg-clave">Contraseña:</label>
+                                <input type="password" id="reg-clave" required>
+                            </div>
+                            <div class="fila-form acciones-form">
+                                <button type="submit" class="boton-guardar">Registrar</button>
+                            </div>
+                        </form>
+                        <div class="fila-form" style="margin-top:10px;">
+                            <button id="btn-google" class="boton-guardar" style="background:#4285F4;color:#fff;">Registrarse con Google</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="area-historial" style="display:none;">
+                    <h3>Historial de Actividad <span id="usuario-actual" style="font-weight:normal"></span></h3>
+                    <button id="btn-logout" class="boton-limpiar">Cerrar sesión</button>
+                    <div class="contenedor-tabla">
+                        <table class="tabla-datos">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Detalle</th>
+                                    <th>Fecha</th>
+                                    <th>Usuario</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-historial">
+                                <!-- eventos -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

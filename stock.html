@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Gestión de Stock - Olica</title>
+</head>
+<body>
+    <header class="header-superior">
+        <div class="header-content">
+            <div class="logo-container">
+                <h1 class="logo">Olica</h1>
+                <img src="./imagenes/fondo olica.jpeg" alt="Logo Olica" class="logo-imagen">
+            </div>
+            <nav class="menu-superior">
+                <ul>
+                    <li><a href="./Olica.html" class="boton-menu"><i class="bi bi-house"></i><span>Inicio</span></a></li>
+                    <li><a href="./ventas.html" class="boton-menu"><i class="bi bi-cash"></i><span>Ventas</span></a></li>
+                    <li><a href="./registro de datos.html" class="boton-menu"><i class="bi bi-cart-plus"></i><span>Compras</span></a></li>
+                    <li><a href="./stock.html" class="boton-menu active"><i class="bi bi-box-seam"></i><span>Stock</span></a></li>
+                    <li><a href="./ganancias y perdidas.html" class="boton-menu"><i class="bi bi-graph-up"></i><span>Ganancias</span></a></li>
+                    <li><a href="./registro.html" class="boton-menu"><i class="bi bi-three-dots-vertical"></i><span>Registro</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main>
+            <!-- FORMULARIO DE STOCK -->
+            <section class="contenido formulario-stock">
+                <h2><i class="bi bi-box-seam"></i> Administrar Stock</h2>
+
+                <form id="formulario-stock" class="form-stock">
+                    <div class="fila-form">
+                        <div class="grupo-form">
+                            <label for="stock-codigo">Código:</label>
+                            <input type="text" id="stock-codigo" name="stock-codigo" placeholder="Ej: P005" required>
+                        </div>
+                        <div class="grupo-form">
+                            <label for="stock-producto">Producto:</label>
+                            <input type="text" id="stock-producto" name="stock-producto" placeholder="Nombre del producto" required>
+                        </div>
+                        <div class="grupo-form">
+                            <label for="stock-cantidad">Cantidad:</label>
+                            <input type="number" id="stock-cantidad" name="stock-cantidad" min="0" placeholder="0" required>
+                        </div>
+                        <div class="grupo-form">
+                            <label for="stock-precio">Precio Unitario ($):</label>
+                            <input type="number" id="stock-precio" name="stock-precio" min="0" step="0.01" placeholder="0.00" required>
+                        </div>
+                    </div>
+                    <div class="fila-form acciones-form">
+                        <button type="submit" class="boton-guardar">
+                            <i class="bi bi-check-circle"></i> Guardar
+                        </button>
+                        <button type="reset" class="boton-limpiar">
+                            <i class="bi bi-arrow-clockwise"></i> Limpiar
+                        </button>
+                    </div>
+                </form>
+
+                <div id="resumen-stock" class="resumen-stock"></div>
+            </section>
+
+            <!-- TABLA DE STOCK -->
+            <section class="contenido tabla-stock">
+                <h2><i class="bi bi-table"></i> Productos en Stock</h2>
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos tabla-stock-lista">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-stock">
+                            <!-- datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+</body>
+</html>

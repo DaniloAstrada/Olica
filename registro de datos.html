@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Registro de Compras - Olica</title>
+</head>
+<body>
+    <header class="header-superior">
+        <div class="header-content">
+            <div class="logo-container">
+                <h1 class="logo">Olica</h1>
+                <img src="./imagenes/fondo olica.jpeg" alt="Logo Olica" class="logo-imagen">
+            </div>
+            <nav class="menu-superior">
+                <ul>
+                    <li><a href="./Olica.html" class="boton-menu"><i class="bi bi-house"></i><span>Inicio</span></a></li>
+                    <li><a href="./ventas.html" class="boton-menu"><i class="bi bi-cash"></i><span>Ventas</span></a></li>
+                    <li><a href="./registro de datos.html" class="boton-menu active"><i class="bi bi-cart-plus"></i><span>Compras</span></a></li>
+                    <li><a href="./stock.html" class="boton-menu"><i class="bi bi-box-seam"></i><span>Stock</span></a></li>
+                    <li><a href="./ganancias y perdidas.html" class="boton-menu"><i class="bi bi-graph-up"></i><span>Ganancias</span></a></li>
+                    <li><a href="./registro.html" class="boton-menu"><i class="bi bi-three-dots-vertical"></i><span>Registro</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main>
+            <!-- FORMULARIO DE NUEVA COMPRA -->
+            <section class="contenido formulario-compra">
+                <h2><i class="bi bi-cart-plus"></i> Registrar Nueva Compra</h2>
+
+                <form id="formulario-compra" class="form-compra">
+                    <!-- DATOS GENERALES DE LA COMPRA -->
+                    <div class="datos-generales">
+                        <h3><i class="bi bi-info-circle"></i> Datos de la Compra</h3>
+                        <div class="fila-form">
+                            <div class="grupo-form">
+                                <label for="proveedor">Proveedor:</label>
+                                <input type="text" id="proveedor" name="proveedor" placeholder="Ej: Distribuidora XYZ" required>
+                            </div>
+
+                            <div class="grupo-form">
+                                <label for="fecha-compra">Fecha:</label>
+                                <input type="date" id="fecha-compra" name="fecha-compra" required>
+                            </div>
+
+                            <div class="grupo-form">
+                                <label for="metodo-pago-compra">Método de Pago:</label>
+                                <select id="metodo-pago-compra" name="metodo-pago-compra" required>
+                                    <option value="">-- Selecciona método --</option>
+                                    <option value="Efectivo">💵 Efectivo</option>
+                                    <option value="Transferencia">💳 Transferencia Bancaria</option>
+                                    <option value="Crédito">💳 Crédito</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCTOS DE LA COMPRA -->
+                    <div class="productos-compra">
+                        <h3><i class="bi bi-box-seam"></i> Productos Comprados</h3>
+                        <div id="lista-productos">
+                            <!-- Productos dinámicos -->
+                        </div>
+
+                        <button type="button" id="agregar-producto" class="boton-agregar-producto">
+                            <i class="bi bi-plus-circle"></i> Agregar Producto
+                        </button>
+                    </div>
+
+                    <!-- TOTALES -->
+                    <div class="totales-compra">
+                        <div class="total-item">
+                            <span>Subtotal:</span>
+                            <span id="subtotal-compra" class="valor-total">$0.00</span>
+                        </div>
+                        <div class="total-item">
+                            <span>IVA (21%):</span>
+                            <span id="iva-compra" class="valor-iva">$0.00</span>
+                        </div>
+                        <div class="total-item total-final">
+                            <span><strong>Total:</strong></span>
+                            <span id="total-compra" class="valor-total-final">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- ACCIONES -->
+                    <div class="fila-form acciones-form">
+                        <button type="submit" class="boton-guardar">
+                            <i class="bi bi-check-circle"></i> Guardar Compra
+                        </button>
+                        <button type="reset" class="boton-limpiar">
+                            <i class="bi bi-arrow-clockwise"></i> Limpiar
+                        </button>
+                    </div>
+                </form>
+
+                <!-- RESUMEN DE LA COMPRA -->
+                <div id="resumen-compra" class="resumen-compra"></div>
+            </section>
+
+            <!-- TABLA DE COMPRAS -->
+            <section class="contenido tabla-compras">
+                <div class="encabezado-tabla">
+                    <h2><i class="bi bi-table"></i> Registro de Compras</h2>
+                    <div class="botones-tabla">
+                        <button id="btnExportarCompras" class="boton-exportar">
+                            <i class="bi bi-file-earmark-excel"></i> Exportar a Excel
+                        </button>
+                        <button id="btnLimpiarCompras" class="boton-limpiar-tabla">
+                            <i class="bi bi-trash"></i> Limpiar Tabla
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos tabla-compras-registro">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Proveedor</th>
+                                <th>Productos</th>
+                                <th>Subtotal</th>
+                                <th>IVA</th>
+                                <th>Total</th>
+                                <th>Método de Pago</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-compras-registro">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- TOTALES GENERALES -->
+                <div class="totales-generales">
+                    <div class="total-item">
+                        <span>Total de Compras:</span>
+                        <span id="total-general-compras" class="valor-total">$0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Compras en Efectivo:</span>
+                        <span id="total-efectivo-compras" class="valor-efectivo">$0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Compras por Transferencia:</span>
+                        <span id="total-transferencia-compras" class="valor-transferencia">$0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Compras a Crédito:</span>
+                        <span id="total-credito-compras" class="valor-credito">$0.00</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Librería para exportar Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
+    <script src="main.js"></script>
+    <script src="compras.js"></script>
+</body>
+</html>
