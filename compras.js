@@ -243,6 +243,7 @@ function obtenerProductosDelFormulario() {
         const nombre = div.querySelector('.producto-nombre').value.trim();
         const cantidad = parseFloat(div.querySelector('.producto-cantidad').value) || 0;
         const precio = parseFloat(div.querySelector('.producto-precio').value) || 0;
+        const abono = parseFloat(div.querySelector('.producto-abono').value) || 0;
         const subtotal = cantidad * precio;
 
         if (nombre && cantidad > 0 && precio > 0) {
@@ -250,6 +251,7 @@ function obtenerProductosDelFormulario() {
                 nombre,
                 cantidad,
                 precio,
+                abono,
                 subtotal
             });
         }
@@ -280,6 +282,10 @@ function abrirModalProducto() {
     document.getElementById('modal-producto-nombre').value = '';
     document.getElementById('modal-producto-cantidad').value = '';
     document.getElementById('modal-producto-precio').value = '';
+    document.getElementById('modal-producto-abono').value = '';
+    // Mostrar total abonado actual
+    const totalAbonado = calcularTotalAbonado();
+    document.getElementById('total-abonado-modal').textContent = totalAbonado.toFixed(2);
 }
 
 function cerrarModalProducto() {
@@ -291,6 +297,7 @@ function guardarProductoModal() {
     const nombre = document.getElementById('modal-producto-nombre').value.trim();
     const cantidad = parseFloat(document.getElementById('modal-producto-cantidad').value) || 0;
     const precio = parseFloat(document.getElementById('modal-producto-precio').value) || 0;
+    const abono = parseFloat(document.getElementById('modal-producto-abono').value) || 0;
 
     if (!nombre || cantidad <= 0 || precio <= 0) {
         alert('Por favor, completa todos los campos correctamente.');
@@ -298,13 +305,13 @@ function guardarProductoModal() {
     }
 
     // Agregar el producto
-    agregarProductoDesdeModal(nombre, cantidad, precio);
+    agregarProductoDesdeModal(nombre, cantidad, precio, abono);
 
     // Cerrar modal
     cerrarModalProducto();
 }
 
-function agregarProductoDesdeModal(nombre, cantidad, precio) {
+function agregarProductoDesdeModal(nombre, cantidad, precio, abono) {
     const listaProductos = document.getElementById('lista-productos');
     const productoId = Date.now();
     const subtotal = cantidad * precio;
@@ -328,6 +335,11 @@ function agregarProductoDesdeModal(nombre, cantidad, precio) {
                 </div>
 
                 <div class="grupo-form">
+                    <label>Monto Abonado ($):</label>
+                    <input type="number" class="producto-abono" min="0" step="0.01" value="${abono}" required>
+                </div>
+
+                <div class="grupo-form">
                     <label>Subtotal:</label>
                     <input type="text" class="producto-subtotal" readonly value="$${subtotal.toFixed(2)}">
                 </div>
@@ -348,6 +360,11 @@ function agregarProductoDesdeModal(nombre, cantidad, precio) {
 
     // Recalcular totales
     calcularTotalesGenerales();
+}
+
+function calcularTotalAbonado() {
+    const productos = obtenerProductosDelFormulario();
+    return productos.reduce((sum, p) => sum + (p.abono || 0), 0);
 }
 
 // ============================================
