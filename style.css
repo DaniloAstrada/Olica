@@ -1002,3 +1002,48 @@ body {
         justify-content: center;
     }
 }
+
+/* Mejoras adicionales para móvil */
+@media (max-width: 480px) {
+    .tarjeta-opcion {
+        padding: 20px 15px;
+        min-height: auto;
+    }
+
+    .icono-tarjeta {
+        font-size: 35px;
+        height: 50px;
+    }
+
+    .tarjeta-opcion h3 {
+        font-size: 16px;
+    }
+
+    .tarjeta-opcion p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .boton-tarjeta {
+        padding: 8px 12px;
+        font-size: 12px;
+        margin-top: 8px;
+    }
+
+    .bienvenida {
+        padding: 20px 0;
+        margin-bottom: 20px;
+    }
+
+    .bienvenida h1 {
+        font-size: 28px;
+    }
+
+    .bienvenida > p:nth-of-type(1) {
+        font-size: 14px;
+    }
+
+    .bienvenida .subtitulo {
+        font-size: 12px;
+    }
+}
