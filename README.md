@@ -12,6 +12,9 @@ La aplicación incluye todo lo necesario (frontend y backend) y funciona sin con
 
 ## Desarrollo
 
+### Requisitos
+- Node.js (descárgalo de [nodejs.org](https://nodejs.org))
+
 ### Uso local
 1. Instala dependencias: `npm install`
 2. Ejecuta: `npm start`
