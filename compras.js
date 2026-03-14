@@ -163,7 +163,7 @@ function inicializarProductos() {
     agregarProducto();
 
     // Configurar botón de agregar producto
-    document.getElementById('agregar-producto').addEventListener('click', agregarProducto);
+    document.getElementById('agregar-producto').addEventListener('click', abrirModalProducto);
 }
 
 function agregarProducto() {
@@ -267,6 +267,87 @@ function calcularTotalesGenerales() {
     document.getElementById('subtotal-compra').textContent = `$${subtotal.toFixed(2)}`;
     document.getElementById('iva-compra').textContent = `$${iva.toFixed(2)}`;
     document.getElementById('total-compra').textContent = `$${total.toFixed(2)}`;
+}
+
+// ============================================
+// MODAL PARA AGREGAR PRODUCTO
+// ============================================
+
+function abrirModalProducto() {
+    const modal = document.getElementById('modal-agregar-producto');
+    modal.classList.add('show');
+    // Limpiar campos
+    document.getElementById('modal-producto-nombre').value = '';
+    document.getElementById('modal-producto-cantidad').value = '';
+    document.getElementById('modal-producto-precio').value = '';
+}
+
+function cerrarModalProducto() {
+    const modal = document.getElementById('modal-agregar-producto');
+    modal.classList.remove('show');
+}
+
+function guardarProductoModal() {
+    const nombre = document.getElementById('modal-producto-nombre').value.trim();
+    const cantidad = parseFloat(document.getElementById('modal-producto-cantidad').value) || 0;
+    const precio = parseFloat(document.getElementById('modal-producto-precio').value) || 0;
+
+    if (!nombre || cantidad <= 0 || precio <= 0) {
+        alert('Por favor, completa todos los campos correctamente.');
+        return;
+    }
+
+    // Agregar el producto
+    agregarProductoDesdeModal(nombre, cantidad, precio);
+
+    // Cerrar modal
+    cerrarModalProducto();
+}
+
+function agregarProductoDesdeModal(nombre, cantidad, precio) {
+    const listaProductos = document.getElementById('lista-productos');
+    const productoId = Date.now();
+    const subtotal = cantidad * precio;
+
+    const productoHTML = `
+        <div class="producto-item" data-id="${productoId}">
+            <div class="fila-producto">
+                <div class="grupo-form">
+                    <label>Producto:</label>
+                    <input type="text" class="producto-nombre" value="${nombre}" required>
+                </div>
+
+                <div class="grupo-form">
+                    <label>Cantidad:</label>
+                    <input type="number" class="producto-cantidad" min="1" value="${cantidad}" required>
+                </div>
+
+                <div class="grupo-form">
+                    <label>Precio Unitario ($):</label>
+                    <input type="number" class="producto-precio" min="0" step="0.01" value="${precio}" required>
+                </div>
+
+                <div class="grupo-form">
+                    <label>Subtotal:</label>
+                    <input type="text" class="producto-subtotal" readonly value="$${subtotal.toFixed(2)}">
+                </div>
+
+                <div class="acciones-producto">
+                    <button type="button" class="boton-eliminar-producto" onclick="eliminarProducto(${productoId})">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    listaProductos.insertAdjacentHTML('beforeend', productoHTML);
+
+    // Configurar eventos
+    configurarEventosProducto(productoId);
+
+    // Recalcular totales
+    calcularTotalesGenerales();
 }
 
 // ============================================
